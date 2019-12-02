@@ -15,8 +15,8 @@
 (defn operation
   [opcode]
   (condp = opcode
-    1  +
-    2  *))
+    1 +
+    2 *))
 
 (defn perform-operation
   [[opcode pos1 pos2 rpos] program]
@@ -27,11 +27,11 @@
 (defn compute
   ([program] (compute 0 program))
   ([iteration program]
-   (let [word   (take 4 (drop (* 4 iteration) program))]
+   (let [word (take 4 (drop (* 4 iteration) program))]
      (cond
        (= 99 (first word)) program
-       (empty? word) program
-       :else (recur (inc iteration) (perform-operation word program))))))
+       (empty? word)       program
+       :else               (recur (inc iteration) (perform-operation word program))))))
 
 (defn solve-part1
   []
