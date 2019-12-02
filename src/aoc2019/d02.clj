@@ -22,7 +22,7 @@
   [[opcode pos1 pos2 rpos] program]
   (let [arg1 (nth program pos1)
         arg2 (nth program pos2)]
-   (assoc program rpos ((operation opcode) arg1 arg2))))
+    (assoc program rpos ((operation opcode) arg1 arg2))))
 
 (defn compute
   ([program] (compute 0 program))
@@ -45,6 +45,7 @@
 ;; Part 2
 ;;
 
+
 (def possible-inputs (for [x (range 0 100) y (range 0 100)] [x y]))
 
 (defn preprocess
@@ -66,3 +67,4 @@
        (filter #(= 19690720 (first %)))
        (first)
        (#(+ (* 100 (nth % 1)) (nth % 2)))))
+

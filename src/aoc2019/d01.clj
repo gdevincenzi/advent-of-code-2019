@@ -34,7 +34,6 @@
        (take-while #(> % 0))
        (reduce +)))
 
-
 (defn solve-part2
   []
   (->> input

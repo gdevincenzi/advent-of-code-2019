@@ -4,7 +4,6 @@
             [aoc2019.d01  :as d01]
             [aoc2019.d02  :as d02]))
 
-
 (deftest day01
   (testing "Part1 test cases"
     (is (= 2 (d01/calc-fuel 12)))
