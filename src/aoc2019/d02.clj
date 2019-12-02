@@ -8,6 +8,10 @@
   (->> (map read-string input)
        (into [])))
 
+;; Part1
+;;
+
+
 (defn operation
   [opcode]
   (condp = opcode
@@ -36,3 +40,29 @@
       (assoc 2 2)
       (compute)
       (nth 0)))
+
+
+;; Part 2
+;;
+
+(def possible-inputs (for [x (range 0 100) y (range 0 100)] [x y]))
+
+(defn preprocess
+  [[input1 input2] program]
+  (-> program
+      (assoc 1 input1)
+      (assoc 2 input2)))
+
+(defn preprocess-and-compute
+  [input-pair]
+  (-> (preprocess input-pair parsed-input)
+      (compute)))
+
+(defn solve-part2
+  []
+  (->> possible-inputs
+       (pmap #(preprocess % parsed-input))
+       (pmap compute)
+       (filter #(= 19690720 (first %)))
+       (first)
+       (#(+ (* 100 (nth % 1)) (nth % 2)))))
