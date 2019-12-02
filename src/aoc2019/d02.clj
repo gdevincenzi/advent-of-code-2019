@@ -54,11 +54,6 @@
       (assoc 1 input1)
       (assoc 2 input2)))
 
-(defn preprocess-and-compute
-  [input-pair]
-  (-> (preprocess input-pair parsed-input)
-      (compute)))
-
 (defn solve-part2
   []
   (->> possible-inputs
