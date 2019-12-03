@@ -2,7 +2,8 @@
   (:require [clojure.test :refer :all]
             [aoc2019.core :refer :all]
             [aoc2019.d01  :as d01]
-            [aoc2019.d02  :as d02]))
+            [aoc2019.d02  :as d02]
+            [aoc2019.d03  :as d03]))
 
 (deftest day01
   (testing "Part1 test cases"
@@ -34,3 +35,10 @@
 
   (testing "Solution for part 2"
     (is (= 4925 (d02/solve-part2)))))
+
+(deftest day03
+  (testing "Part1 test cases"
+    (is (= 159 (d03/distance [["R75" "D30" "R83" "U83" "L12" "D49" "R71" "U7" "L72"]
+                              ["U62" "R66" "U55" "R34" "D71" "R55" "D58" "R83"]])))
+    (is (= 135 (d03/distance [["R98" "U47" "R26" "D63" "R33" "U87" "L62" "D20" "R33" "U53" "R51"]
+                              ["U98" "R91" "D20" "R16" "D67" "R40" "U7" "R15" "U6" "R7"]])))))
