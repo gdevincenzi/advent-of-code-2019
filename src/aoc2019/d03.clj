@@ -24,7 +24,7 @@
 (defn lay-wire-path
   ([instructions] (lay-wire-path [[0 0]] instructions))
   ([path [cur & rst]]
-   (let [path' (concat path (calc-next-path (last path) cur))]
+   (let [path' (concat path (rest (calc-next-path (last path) cur)))]
      (if (empty? rst)
        path'
        (recur path' rst)))))
