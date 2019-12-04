@@ -37,4 +37,29 @@
        (filter possible-password?)
        (count)))
 
-(defn solve-part1 [] (count-password input))
+(defn solve-part1 [] (count-passwords input))
+
+
+;; Part 2
+;;
+
+
+(defn gen-regex [n] (re-pattern (str "(?<!" n ")" n n "(?!" n ")")))
+
+(defn only-double?
+  [number]
+  (->> (range 0 10)
+       (map gen-regex)
+       (map #(re-find % (str number)))
+       (some string?)))
+
+(defn password? [number] (and (never-decrease? number) (only-double? number)))
+
+(defn count-passwords2
+  [[lower-bound upper-bound]]
+  (->> (range lower-bound (inc upper-bound))
+       (filter password?)
+       (count)))
+
+(defn solve-part2 [] (count-passwords2 input))
+
