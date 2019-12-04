@@ -1,9 +1,11 @@
-(ns aoc2019.d03)
+(ns aoc2019.d03
+  (:require [clojure.set    :as set]
+            [clojure.string :as s]))
 
 (def input
   (->> (slurp "resources/d03")
-       (clojure.string/split-lines)
-       (map #(clojure.string/split % #","))))
+       (s/split-lines)
+       (map #(s/split % #","))))
 
 ;; Part 1
 ;;
@@ -33,7 +35,7 @@
   (->> input
        (pmap lay-wire-path)
        (pmap #(into #{} %))
-       (apply clojure.set/intersection)
+       (apply set/intersection)
        (remove #(= [0 0] %))
        (map (fn [[x y]] (+ (Math/abs x) (Math/abs y))))
        (sort <)

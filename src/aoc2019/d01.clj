@@ -1,8 +1,9 @@
-(ns aoc2019.d01)
+(ns aoc2019.d01
+  (:require [clojure.string :as s]))
 
 (def input
   (->> (slurp "resources/d01")
-       (clojure.string/split-lines)
+       (s/split-lines)
        (map read-string)))
 
 ;; Part1
