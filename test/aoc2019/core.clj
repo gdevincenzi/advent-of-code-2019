@@ -3,7 +3,8 @@
             [aoc2019.core :refer :all]
             [aoc2019.d01  :as d01]
             [aoc2019.d02  :as d02]
-            [aoc2019.d03  :as d03]))
+            [aoc2019.d03  :as d03]
+            [aoc2019.d04  :as d04]))
 
 (deftest day01
   (testing "Part1 test cases"
@@ -54,3 +55,11 @@
 
   (testing "Solution for part 2"
     (is (= 66076 (d03/solve-part2)))))
+
+
+(deftest day04
+  (testing "Solution for part 1"
+    (is (= 2814 (d04/solve-part1))))
+
+  (testing "Solution for part 2"
+    (is (= 1991 (d04/solve-part2)))))
