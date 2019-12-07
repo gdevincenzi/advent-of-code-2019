@@ -78,7 +78,6 @@
        (map (fn [coord] [(get path1 coord) (get path2 coord)]))
        (map #(reduce + %))))
 
-
 (defn steps [input]
   (let [wirepaths (wirepaths input)
         intersections (calc-intersections wirepaths)]

@@ -10,6 +10,7 @@
 ;; Part 1
 ;;
 
+
 (defn number->list
   [number]
   (->> (str number)
@@ -30,7 +31,6 @@
 (defn possible-password?
   [number]
   (and (never-decrease? number) (has-double? number)))
-
 
 (defn count-passwords
   [[lower-bound upper-bound]]

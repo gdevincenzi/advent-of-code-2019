@@ -58,6 +58,7 @@
 ;; Part 2
 ;;
 
+
 (def pointer (atom 0))
 
 (defn JIT
@@ -87,36 +88,36 @@
 (defn get-word
   [opcode program]
   (condp contains? opcode
-   #{1 2 7 8} (take 4 program)
-   #{3 4} (take 2 program)
-   #{5 6} (take 3 program)
-   #{99} nil))
+    #{1 2 7 8} (take 4 program)
+    #{3 4} (take 2 program)
+    #{5 6} (take 3 program)
+    #{99} nil))
 
 (defn update-pointer
   [opcode]
   (condp contains? opcode
-   #{1 2 7 8} (swap! pointer + 4)
-   #{3 4} (swap! pointer + 2)
-   #{5 6} nil))
+    #{1 2 7 8} (swap! pointer + 4)
+    #{3 4} (swap! pointer + 2)
+    #{5 6} nil))
 
 (defn compute2
- [input]
- (let [current (subvec @program @pointer)
-       [op mode1 mode2] (parse-opcode (first current))
-       word (get-word op current)
-       params (drop 1 word)]
-   (when-not (= 99 op)
-     (condp = op
-       1 (apply transform! + mode1 mode2 params)
-       2 (apply transform! * mode1 mode2 params)
-       3 (update-value (first params) input)
-       4 (reset! output (read-value mode1 (first params)))
-       5 (apply JIT mode1 mode2 params)
-       6 (apply JIF mode1 mode2 params)
-       7 (apply less-than mode1 mode2 params)
-       8 (apply equals mode1 mode2 params))
-     (update-pointer op)
-     (recur input))))
+  [input]
+  (let [current (subvec @program @pointer)
+        [op mode1 mode2] (parse-opcode (first current))
+        word (get-word op current)
+        params (drop 1 word)]
+    (when-not (= 99 op)
+      (condp = op
+        1 (apply transform! + mode1 mode2 params)
+        2 (apply transform! * mode1 mode2 params)
+        3 (update-value (first params) input)
+        4 (reset! output (read-value mode1 (first params)))
+        5 (apply JIT mode1 mode2 params)
+        6 (apply JIF mode1 mode2 params)
+        7 (apply less-than mode1 mode2 params)
+        8 (apply equals mode1 mode2 params))
+      (update-pointer op)
+      (recur input))))
 
 (defn solve-part2
   []
