@@ -5,7 +5,8 @@
             [aoc2019.d02  :as d02]
             [aoc2019.d03  :as d03]
             [aoc2019.d04  :as d04]
-            [aoc2019.d05  :as d05]))
+            [aoc2019.d05  :as d05]
+            [aoc2019.d06  :as d06]))
 
 (deftest day01
   (testing "Part1 test cases"
@@ -57,7 +58,6 @@
   (testing "Solution for part 2"
     (is (= 66076 (d03/solve-part2)))))
 
-
 (deftest day04
   (testing "Solution for part 1"
     (is (= 2814 (d04/solve-part1))))
@@ -65,10 +65,27 @@
   (testing "Solution for part 2"
     (is (= 1991 (d04/solve-part2)))))
 
-
 (deftest day05
   (testing "Solution for part 1"
     (is (= 5074395 (d05/solve-part1))))
 
   (testing "Solution for part 2"
     (is (= 8346937 (d05/solve-part2)))))
+
+(deftest day06
+  (testing "Part1 test cases"
+    (let [codelist (d06/input->codelist ["COM)B" "B)C" "C)D" "D)E" "E)F" "B)G" "G)H" "D)I" "E)J" "J)K" "K)L"])]
+      (is (= 3 (d06/calc-orbits :D codelist)))
+      (is (= 7 (d06/calc-orbits :L codelist)))
+      (is (= 0 (d06/calc-orbits :COM codelist)))
+      (is (= 42 (d06/calc-total-orbits codelist)))))
+
+  (testing "Solution for part 1"
+    (is (= 147223 (d06/solve-part1))))
+
+  (testing "Part2 test cases"
+    (let [codelist (d06/input->codelist ["COM)B" "B)C" "C)D" "D)E" "E)F" "B)G" "G)H" "D)I" "E)J" "J)K" "K)L" "K)YOU" "I)SAN"])]
+      (is (= 4 (d06/calc-transfers codelist)))))
+
+  (testing "Solution for part 1"
+    (is (= 340 (d06/solve-part2)))))
